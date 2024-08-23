@@ -1,0 +1,9 @@
+services:
+  pygeoapi:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./config.yml:/pygeoapi/local.config.yml
+    ports:
+      - "5000:80"

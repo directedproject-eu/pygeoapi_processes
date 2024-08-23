@@ -1,0 +1,15 @@
+#IDEs
+.idea/
+.vscode/
+
+#python
+__pycache__/
+*.egg-info
+build
+*.pyc
+.venv/
+
+#binaries
+*.tif
+*.tiff
+*.geotiff

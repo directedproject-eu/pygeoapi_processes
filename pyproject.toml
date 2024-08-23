@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "directed_pygeoapi_processes"
+version = "0.1"
+authors = [{ name = "52N authors", email = "info@52north.org" }]
+description = "directed_pygeoapi_processes"
+readme = "README.md"
+#license = { file="LICENSE" }
+#requires-python = ">=3.8"
+#classifiers = [
+#    "Programming Language :: Python :: 3.8",
+#    "Operating System :: OS Independent",
+#]
+dynamic = ["dependencies"]
+
+[tool.setuptools.dynamic]
+dependencies = { file = ["requirements.txt"] }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+#[tool.setuptools.package-data]

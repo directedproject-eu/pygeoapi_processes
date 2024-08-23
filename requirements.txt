@@ -1,0 +1,6 @@
+climada
+dask>=2024.2,<2024.3
+fiona
+gdal
+h5netcdf
+numpy==1.26.4
