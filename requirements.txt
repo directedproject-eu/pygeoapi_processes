@@ -1,6 +1,7 @@
 climada
 dask>=2024.2,<2024.3
 fiona
+Flask-cors>=5.0.0
 gdal
 h5netcdf
 numpy==1.26.4
