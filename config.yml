@@ -60,4 +60,3 @@ resources:
     processor:
       name: directed_pygeoapi_processes.climada.SimpleExampleDenmarkProcessor
     type: process
-
