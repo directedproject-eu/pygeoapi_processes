@@ -12,11 +12,6 @@ env:
   IMAGE_TITLE: 52°North DIRECTED API
   IMAGE_VENDOR: 52°North GmbH
   METADATA_TAG_PATTERN: v(.*)
-  SLACK_CHANNEL_ID_52N: C05MUAV3T3L
-  TRIGGER_ORGA: 52north
-  TRIGGER_REF: main
-  TRIGGER_REPO: otc-cce-k8s-ns-dev-directed
-  TRIGGER_WORKFLOW: update_deployment_api.yaml
 
 on:
   workflow_dispatch:
@@ -108,7 +103,7 @@ jobs:
         file_path: trivy-results.txt
         file_type: text/plain
         title: trivy scan results of ${{ github.repository }}
-        channel_id: ${{ env.SLACK_CHANNEL_ID_52N }}
+        channel_id: ${{ secrets.SLACK_CHANNEL_ID_52N }}
         initial_comment: "Trivy Results for '${{ env.IMAGE_TAG }}' from '${{ github.repository }}' uploaded. Please review: https://github.com/${{ github.repository }}/actions"
     -
       name: Trigger redeployment
@@ -117,9 +112,9 @@ jobs:
         github-token: ${{ secrets.GHA_WORKFLOW_TRIGGER }}
         script: |
             const result = await github.rest.actions.createWorkflowDispatch({
-              owner: '${{ env.TRIGGER_ORGA }}',
-              repo: '${{ env.TRIGGER_REPO }}',
-              workflow_id: '${{ env.TRIGGER_WORKFLOW }}',
-              ref: '${{ env.TRIGGER_REF }}'
+              owner: '${{ secrets.TRIGGER_ORGA }}',
+              repo: '${{ secrets.TRIGGER_REPO }}',
+              workflow_id: '${{ secrets.TRIGGER_WORKFLOW }}',
+              ref: '${{ secrets.TRIGGER_REF }}'
             })
             console.log(result)
