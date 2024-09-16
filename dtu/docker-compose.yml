@@ -1,0 +1,15 @@
+services:
+  dtu:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    entrypoint: /bin/sh
+    tty: true
+    environment:
+      - QT_QPA_PLATFORM=offscreen
+      - QGIS_PREFIX_PATH=/usr
+      - PYTHONPATH=/usr/share/qgis/python/plugins:$PYTHONPATH
+#      - XDG_RUNTIME_DIR=/tmp
+    volumes:
+      - ./main.py:/home/main.py
+#      - ./osm_buildings_161124.gpkg:/home/osm_buildings_161124.gpkg
