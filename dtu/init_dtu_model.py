@@ -93,7 +93,6 @@ if __name__ == '__main__':
     times_slept = 0
     db_conn_ok = False
     while times_slept < max_retries:
-        # check "connection" to odc (?) or later
         print("[{}/{}] Check database connection".format(str(times_slept + 1), str(max_retries)))
         if verify_database_connection(db_admin_db, db_host, db_port, db_admin_user, db_admin_pw, no_ping):
             db_conn_ok = True
