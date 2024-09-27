@@ -44,4 +44,9 @@ RUN wget --quiet -O OS2DamageCost.zip $URL_OS2DAMAGECOST \
     && unzip -q OS2DamageCostAdmin.zip | ( if [ $? == 1 ]; then exit 0; fi ) \
     && rm OS2DamageCostAdmin.zip
 
+COPY entrypoint.sh /home/entrypoint.sh
+COPY init_dtu_model.py /home/init_dtu_model.py
+
 WORKDIR /home
+
+ENTRYPOINT /bin/sh /home/entrypoint.sh && /bin/sh

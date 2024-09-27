@@ -3,13 +3,33 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    entrypoint: /bin/sh
+#    entrypoint: /bin/sh
     tty: true
     environment:
       - QT_QPA_PLATFORM=offscreen
       - QGIS_PREFIX_PATH=/usr
       - PYTHONPATH=/usr/share/qgis/python/plugins:$PYTHONPATH
 #      - XDG_RUNTIME_DIR=/tmp
+    env_file:
+      - .env.db
     volumes:
       - ./main.py:/home/main.py
 #      - ./osm_buildings_161124.gpkg:/home/osm_buildings_161124.gpkg
+    depends_on:
+      - db
+  db:
+    image: postgis/postgis:16-3.4
+#    shm_size: 1g
+    volumes:
+      - dtu-data:/var/lib/postgresql/data
+    env_file:
+      - .env.db
+    ports:
+      - "5432:5432"
+    restart: on-failure
+    healthcheck:
+      test: "exit 0"
+
+volumes:
+  dtu-data:
+    name: dtu_dtu-data
