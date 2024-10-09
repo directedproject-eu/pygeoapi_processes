@@ -72,6 +72,12 @@ jobs:
     -
       name: Run Trivy vulnerability scanner
       uses: aquasecurity/trivy-action@master
+      env:
+        #
+        # Using AWS repository to circumvent TOOMANYREQUEST error from github repository
+        #
+        TRIVY_DB_REPOSITORY: public.ecr.aws/aquasecurity/trivy-db:2
+        TRIVY_JAVA_DB_REPOSITORY: public.ecr.aws/aquasecurity/trivy-java-db:1
       with:
         image-ref: "${{ env.IMAGE_TAG }}"
         format: 'table'
